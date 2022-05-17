@@ -1,0 +1,42 @@
+body{
+	background-image: url("venice2.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+button{
+	border: 0;
+	border-radius: 30px;
+	background: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+}
+
+form{
+	height: 500px;
+	width: 750px;
+	margin: 0 auto;
+	margin-top: 60px;
+	text-align: left;
+}
+
+label{
+	font-size: 20px;
+	font-family:Bradley Hand, cursive;
+}
+
+::placeholder{
+	font-family:Bradley Hand, cursive;
+}
+
+
+.form-group2{
+	margin-top: 20px;
+}
+
+.check{
+	margin-top: 15px;
+}
+
+.checkboxdisabled{
+	margin-bottom: 15px;
+}
