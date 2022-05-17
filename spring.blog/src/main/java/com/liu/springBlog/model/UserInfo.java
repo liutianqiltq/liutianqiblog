@@ -15,8 +15,8 @@ public class UserInfo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long id;
-	public String name;
-	public String password;
+	private Long id;
+	private String name;
+	private String password;
 
 }
