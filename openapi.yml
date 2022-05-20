@@ -12,7 +12,7 @@ paths:
       tags:
         - users
       description: '返回login界面'
-      operationId: getLoginView
+      operationId: index
       responses:
         '200':
           description: OK
@@ -74,6 +74,9 @@ paths:
                   type: "string"
                 password:
                   type: "string"
+                passwordAgain:
+                  type: "string"
+
       responses:
         '200':
           description: OK
@@ -107,9 +110,13 @@ paths:
             schema:
               type: "object"
               properties:
-                username:
+                title:
                   type: "string"
-                password:
+                introduction:
+                  type: "string"
+                contents:
+                  type: "string"
+                user_id:
                   type: "string"
       responses:
         '200':
