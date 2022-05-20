@@ -29,6 +29,7 @@ public class EditorController {
 		@RequestParam("title")String title,
 		@RequestParam("introduction")String introduction,
 		@RequestParam("contents")String contents,
+		@RequestParam("user_id")String user_id,
 		ModelAndView mv) {
 		
 		BlogInfo blogInfo = BlogInfo.builder()
