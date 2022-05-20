@@ -44,6 +44,7 @@ paths:
             text/html:    
               schema:
                 $ref: "#/components/schemas/Login"
+
   /register:
     get:
       tags:
@@ -56,7 +57,7 @@ paths:
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/LoginHtml"
+                $ref: "#/components/schemas/RegisterHtml"
   
     post:
       tags:
@@ -83,25 +84,76 @@ paths:
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Login"
-  /blog:
+                $ref: "#/components/schemas/Register"
+  /createblog:
     get:
       tags:
-        - users
-      description: '返回blog界面'
-      operationId: getBlogView
+        - editor
+      description: '访问editor界面'
+      operationId: getEditorView
       responses:
         '200':
           description: OK
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/LoginHtml"
-  /editor:
+                $ref: "#/components/schemas/EditorHtml"
+
     post:
       tags:
-        - users
-      description: '进入编辑界面'
+        - editor
+      description: '创建新的文章'
+      operationId: create
+      requestBody:
+        required: true
+        content:
+          text/json:
+            schema:
+              type: "object"
+              properties:
+                title:
+                  type: "string"
+                introduction:
+                  type: "string"
+                contents:
+                  type: "string"
+                user_id:
+                  type: "string"
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+                $ref: "#/components/schemas/Editor"  
+  /deleteblog:
+    post:
+      tags:
+        - editor
+      description: '删除已创建的文章'
+      operationId: delete
+      requestBody:
+            
+        required: true
+        content:
+          text/json:
+            schema:
+              type: "object"
+              properties:
+                user_id:
+                  type: "string"
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+                $ref: "#/components/schemas/Blog"
+  /editeblog:
+    post:
+      tags:
+        - editor
+      description: '修改已创建的文章'
       operationId: editor
       requestBody:
         required: true
@@ -124,7 +176,20 @@ paths:
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Login"  
+                $ref: "#/components/schemas/Blog"
+  /viewblog:
+    get:
+      tags:
+        - blog
+      description: '访问blog界面'
+      operationId: getBlogView
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+                $ref: "#/components/schemas/BlogHtml"            
 
 components:
   schemas:
@@ -136,4 +201,42 @@ components:
         username:
           type: "string"
         view:
+          type: "string"
+
+    RegisterHtml:
+      type: "string"
+    Register:
+      type: "object"
+      properties:
+        username:
+          type: "string"
+        view:
           type: "string"   
+
+    BlogHtml:
+      type: "string"
+    Blog:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+        introduction:
+          type: "string"
+        contents:
+          type: "string"
+        ser_id:
+          type: "string"
+
+    EditorHtml:
+      type: "string"
+    Editor:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+        introduction:
+          type: "string"
+        contents:
+          type: "string"
+        ser_id:
+          type: "string"

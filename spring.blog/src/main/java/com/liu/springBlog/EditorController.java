@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.liu.springBlog.model.BlogInfo;
+import com.liu.springBlog.repository.BlogInfoRepository;
 import com.liu.springBlog.repository.UserInfoRepository;
 
 @Controller
 public class EditorController {
 	
 	@Autowired
-	private UserInfoRepository userInfoRepository;
-	@Autowired
-	private UserInfoRepository blogInfoRepository;
+	private BlogInfoRepository blogInfoRepository;
 	
 	@GetMapping("/blog")
 	public String getBlogView() {
