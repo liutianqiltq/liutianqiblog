@@ -2,5 +2,5 @@
 
 -login(已完成)
 -register（已完成）
--blog（进行中）
--blog editor（进行中）
+-blog（已完成）
+-blog editor（已完成）
