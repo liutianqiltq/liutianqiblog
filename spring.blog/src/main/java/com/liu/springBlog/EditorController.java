@@ -17,10 +17,10 @@ public class EditorController {
 	@Autowired
 	private BlogInfoRepository blogInfoRepository;
 	
-	@GetMapping("/blog")
-	public String getBlogView() {
+	@GetMapping("/editor")
+	public String getEditorView() {
 		
-		return "Lblog";
+		return "editor";
 	}
 	
 	@PostMapping("/editor")

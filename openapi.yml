@@ -1,8 +1,8 @@
 
 openapi: '3.0.2'
 info:
-  title: LIU TIANQI Blogs System
-  description: this is a blogs system for LIU TIANQI
+  title: LIU TIANQI blog system
+  description: this is a blog system for LIU TIANQI
   version: '1.0'
 servers:
   - url: https://localhost:8080
@@ -12,20 +12,22 @@ paths:
       tags:
         - users
       description: '返回login界面'
-      operationId: index
+      operationId: getLoginView
+
       responses:
         '200':
           description: OK
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/LoginHtml"
-  /home:
+               type: "string"
+               example: "login.html"
     post:
       tags:
         - users
-      description: '接受用户登陆信息'
-      operationId: blog
+      description: '接受user的login信息,若信息正确则返回blog页面'
+      operationId: login
+
       requestBody:
         required: true
         content:
@@ -43,26 +45,32 @@ paths:
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Login"
-
+               type: "object"
+               properties:
+                username:
+                  type: "string"
+                view:
+                  type: "string"
+                  example: "blog.html"
   /register:
     get:
       tags:
         - users
       description: '返回register界面'
       operationId: getRegisterView
+
       responses:
         '200':
           description: OK
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/RegisterHtml"
-  
+                type: "string"
+                example: "register.html" 
     post:
       tags:
         - users
-      description: '接受用户注册信息'
+      description: '接受user输入信息,若两次password一致则返回blog页面'
       operationId: register
       requestBody:
         required: true
@@ -77,83 +85,93 @@ paths:
                   type: "string"
                 passwordAgain:
                   type: "string"
-
       responses:
         '200':
           description: OK
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Register"
-  /createblog:
+               type: "object"
+               properties:
+                username:
+                  type: "string"
+                view:
+                  type: "string"
+                  example: "blog.html"
+
+  /blog:
     get:
       tags:
-        - editor
-      description: '访问editor界面'
-      operationId: getEditorView
-      responses:
-        '200':
-          description: OK
-          content:
-            text/html:    
-              schema:
-                $ref: "#/components/schemas/EditorHtml"
+        - blogs
+      description: '返回blog界面'
+      operationId: getBlogView
 
-    post:
-      tags:
-        - editor
-      description: '创建新的文章'
-      operationId: create
       requestBody:
         required: true
         content:
           text/json:
             schema:
-              type: "object"
-              properties:
-                title:
-                  type: "string"
-                introduction:
-                  type: "string"
-                contents:
-                  type: "string"
-                user_id:
-                  type: "string"
+                type: "object"
+                properties:
+                  userId:
+                    type: "string"
       responses:
         '200':
           description: OK
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Editor"  
-  /deleteblog:
-    post:
+               type: "object"
+
+               properties:
+                 username:
+                  type: "string"
+                 blogs:
+                   type: array
+                   items:
+                      type: "object"
+
+                      properties:
+                        title:
+                          type: "string"
+                        introduction:
+                          type: "string"
+                        contents:
+                          type: "string"
+                 view:
+                   type: "string"
+                   example: "blog.html"
+
+  /editor:
+    get:
       tags:
-        - editor
-      description: '删除已创建的文章'
-      operationId: delete
+        - blogs
+      description: '返回editor界面'
+      operationId: getEditView
       requestBody:
-            
         required: true
         content:
           text/json:
             schema:
-              type: "object"
-              properties:
-                user_id:
-                  type: "string"
+                type: "object"
+
+                properties:
+                  userId:
+                    type: "string"
+                  blogId:
+                    type: "string"
       responses:
         '200':
           description: OK
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Blog"
-  /editeblog:
+                type: "string"
+                example: "edit.html" 
     post:
       tags:
-        - editor
-      description: '修改已创建的文章'
+        - blogs
+      description: '接受user输入的编辑信息,并返回blog页面'
       operationId: editor
       requestBody:
         required: true
@@ -168,7 +186,120 @@ paths:
                   type: "string"
                 contents:
                   type: "string"
-                user_id:
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+               type: "object"
+
+               properties:
+                 username:
+                  type: "string"
+                 blogs:
+                   type: array
+                   items:
+                      type: "object"
+
+                      properties:
+                        title:
+                          type: "string"
+                        introduction:
+                          type: "string"
+                        contents:
+                          type: "string"
+                 view:
+                   type: "string"
+                   example: "blog.html"
+
+  /delete:
+    get:
+      tags:
+        - blogs
+      description: '接受删除blog的信息，并返回新的blog页面'
+      operationId: deleteBlog
+      requestBody:
+        required: true
+        content:
+          text/json:
+            schema:
+                type: "object"
+                properties:
+                  userId:
+                    type: "string"
+                  blogId:
+                    type: "string"
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+               type: "object"
+
+               properties:
+                 username:
+                  type: "string"
+                 blogs:
+                   type: array
+                   items:
+                      type: "object"
+
+                      properties:
+                        title:
+                          type: "string"
+                        introduction:
+                          type: "string"
+                        contents:
+                          type: "string"
+                 view:
+                   type: "string"
+                   example: "blog.html"
+
+  /update:
+    get:
+      tags:
+        - blogs
+      description: '返回更新页面'
+      operationId: updateBlog
+      requestBody:
+        required: true
+        content:
+          text/json:
+            schema:
+                type: "object"
+                properties:
+                  userId:
+                    type: "string"
+                  blogId:
+                    type: "string"
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:    
+              schema:
+                type: "string"
+                example: "edit.html" 
+
+    post:
+      tags:
+        - blogs
+      description: '接受user的update信息,并返回blog页面'
+      operationId: update
+      requestBody:
+        required: true
+        content:
+          text/json:
+            schema:
+              type: "object"
+              properties:
+                title:
+                  type: "string"
+                introduction:
+                  type: "string"
+                content:
                   type: "string"
       responses:
         '200':
@@ -176,67 +307,23 @@ paths:
           content:
             text/html:    
               schema:
-                $ref: "#/components/schemas/Blog"
-  /viewblog:
-    get:
-      tags:
-        - blog
-      description: '访问blog界面'
-      operationId: getBlogView
-      responses:
-        '200':
-          description: OK
-          content:
-            text/html:    
-              schema:
-                $ref: "#/components/schemas/BlogHtml"            
+               type: "object"
 
-components:
-  schemas:
-    LoginHtml:
-      type: "string"
-    Login:
-      type: "object"
-      properties:
-        username:
-          type: "string"
-        view:
-          type: "string"
+               properties:
+                 username:
+                  type: "string"
+                 blogs:
+                   type: array
+                   items:
+                      type: "object"
 
-    RegisterHtml:
-      type: "string"
-    Register:
-      type: "object"
-      properties:
-        username:
-          type: "string"
-        view:
-          type: "string"   
-
-    BlogHtml:
-      type: "string"
-    Blog:
-      type: "object"
-      properties:
-        title:
-          type: "string"
-        introduction:
-          type: "string"
-        contents:
-          type: "string"
-        ser_id:
-          type: "string"
-
-    EditorHtml:
-      type: "string"
-    Editor:
-      type: "object"
-      properties:
-        title:
-          type: "string"
-        introduction:
-          type: "string"
-        contents:
-          type: "string"
-        ser_id:
-          type: "string"
+                      properties:
+                        title:
+                          type: "string"
+                        introduction:
+                          type: "string"
+                        contents:
+                          type: "string"
+                 view:
+                   type: "string"
+                   example: "blog.html"

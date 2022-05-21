@@ -21,14 +21,14 @@ public class LoginController {
 	private UserInfoRepository userInfoRepository;
 	
 	@GetMapping("/")  			
-	public String index() {
+	public String getLoginView() {
 		
 		log.info("index方法被执行");
 		
 		return "login";
 	}
 
-	@PostMapping("/home")
+	@PostMapping("/")
 	public ModelAndView blog(@RequestParam("username")String username, @RequestParam("password")String password
 			, ModelAndView mv) {
 		
