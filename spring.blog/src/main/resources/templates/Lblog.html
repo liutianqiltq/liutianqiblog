@@ -57,11 +57,17 @@
 	<p>Cherry blossoms are a top highlight of Tokyo in early April. Hugely popular events include Ueno Park's Ueno Sakura Matsuri and the Nakameguro Cherry Blossom Festival held along the Megurogawa River in Nakameguro. There's also Sumida Park Sakura Festival and Chiyoda Cherry Blossom Festival which takes place along the Chidorigafuchi walkway to the west of the Imperial Palace. Petals dance in the air as they fall like snow, and float on the surface of rivers, creating quintessential spring scenes.</p>
 	<h6>04/04/2016</h6>
 	<h6>22 COMMENTS</h6>
+	<button type="button"><i class="material-icons">delete</i>Delete</button>
+	<button type="button"><i class="material-icons">refresh</i>Update</button>
 	<hr>
-	<h5><span th:text="${title}"></span></h5>
-	<h4><a href="#"><span th:text="${introduction}"></span></a></h4>
-	<p><span th:text="contents"></span></p>
-	<hr>
+	<span th:each="blog : ${blogs}">
+		<h5><span th:text="${title}"></span></h5>
+		<h4><a href="#"><span th:text="${introduction}"></span></a></h4>
+		<p><span th:text="${contents}"></span></p>
+		<button type="button"><i class="material-icons">delete</i>Delete</button>
+		<button type="button"><i class="material-icons">refresh</i>Update</button>
+		<hr>
+	</span>
 </div>
 
 

@@ -7,6 +7,5 @@ import com.liu.springBlog.model.UserInfo;
 
 
 public interface BlogInfoRepository extends JpaRepository<BlogInfo, Long>{
-	
 
 }

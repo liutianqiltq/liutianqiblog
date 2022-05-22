@@ -99,6 +99,14 @@ h3 a:hover{
 	font-size: 30px;
 }
 
-
-
-
+button{
+	float: right;
+	margin-bottom: 0px;
+	margin-top:10px;
+	margin-right: 20px;
+	border: 0;
+	border-radius: 25px;
+	background: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+	font-family:Bradley Hand, cursive;
+	font-size: 18px;
+}

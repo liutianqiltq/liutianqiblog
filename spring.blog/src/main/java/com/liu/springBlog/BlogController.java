@@ -9,13 +9,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.liu.springBlog.model.BlogInfo;
 import com.liu.springBlog.repository.BlogInfoRepository;
-import com.liu.springBlog.repository.UserInfoRepository;
 
 @Controller
-public class EditorController {
+public class BlogController {
 	
 	@Autowired
 	private BlogInfoRepository blogInfoRepository;
+	
+	@GetMapping("/blog")
+	public String getBlogView() {
+		
+		return "Lblog";
+	}
 	
 	@GetMapping("/editor")
 	public String getEditorView() {
@@ -28,7 +33,6 @@ public class EditorController {
 		@RequestParam("title")String title,
 		@RequestParam("introduction")String introduction,
 		@RequestParam("contents")String contents,
-		@RequestParam("user_id")String user_id,
 		ModelAndView mv) {
 		
 		BlogInfo blogInfo = BlogInfo.builder()
@@ -39,6 +43,7 @@ public class EditorController {
 		
 		blogInfoRepository.save(blogInfo);
 		
+		mv.addObject("blogs", blogInfoRepository.findAll());
 		mv.setViewName("Lblog");
 		
 		return mv;
