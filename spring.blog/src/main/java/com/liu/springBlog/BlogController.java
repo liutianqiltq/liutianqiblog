@@ -9,12 +9,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.liu.springBlog.model.BlogInfo;
 import com.liu.springBlog.repository.BlogInfoRepository;
+import com.liu.springBlog.repository.UserInfoRepository;
 
 @Controller
 public class BlogController {
 	
 	@Autowired
 	private BlogInfoRepository blogInfoRepository;
+	@Autowired
+	private UserInfoRepository userInfoRepository;
+	
 	
 	@GetMapping("/blog")
 	public String getBlogView() {

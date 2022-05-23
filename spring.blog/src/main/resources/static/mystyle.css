@@ -73,8 +73,9 @@ img{
 
 .myjournal h5,h4{
 	font-size: 25px;
-	text-align: left;
+	text-align: center;
 	margin-bottom: 10px;
+	margin-top: 40px;
 }
 .myjournal h6{
 	font-size: 15px;
@@ -85,7 +86,7 @@ img{
 
 .myjournal p{
 	font-size: 20px;
-	text-align: left;
+	text-align: center;
 }
 
 h3 a{
