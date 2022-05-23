@@ -7,6 +7,6 @@ import com.liu.springBlog.model.BlogInfo;
 
 public interface BlogInfoRepository extends JpaRepository<BlogInfo, Long>{
 	
-	BlogInfo findByTitle(String title);
+	BlogInfo findByUserId(Long user_id);
 
 }

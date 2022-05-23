@@ -7,5 +7,6 @@ import com.liu.springBlog.model.UserInfo;
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long>{
 	
 	UserInfo findByName(String name);
+	
 
 }
