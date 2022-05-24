@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.liu.springBlog.model.BlogInfo;
+import com.liu.springBlog.model.CommentInfo;
 import com.liu.springBlog.model.UserInfo;
 import com.liu.springBlog.repository.BlogInfoRepository;
+import com.liu.springBlog.repository.CommentInfoRepository;
 import com.liu.springBlog.repository.UserInfoRepository;
 
 @Controller
@@ -22,6 +24,8 @@ public class BlogController {
 	private BlogInfoRepository blogInfoRepository;
 	@Autowired
 	private UserInfoRepository userInfoRepository;
+	@Autowired
+	private CommentInfoRepository commentInfoRepository;
 	
 	
 	@GetMapping("/blog")
@@ -84,7 +88,35 @@ public class BlogController {
 		mv.setViewName("Lblog");
 		
 		return mv;
+	}
+	
+	@GetMapping("/comment")
+	public ModelAndView getCommentView(@RequestParam("username") String username, ModelAndView mv) {
 		
+		mv.addObject("username", username);
+		mv.setViewName("comment");
+		
+		return mv;
+	}
+	
+	@PostMapping("/comment")
+	public ModelAndView comment(
+		@RequestParam("username") String username,
+		@RequestParam("comment")String comment,
+		ModelAndView mv) {
+		
+		CommentInfo commentInfo = CommentInfo.builder()
+				.comment(comment)//
+				.build();
+		
+		commentInfoRepository.save(commentInfo);
+		System.out.println(commentInfoRepository.findAll());
+		mv.addObject("comments", commentInfoRepository.findAll());
+		mv.addObject("blogs", blogInfoRepository.findAll());
+		mv.addObject("username", username);
+		mv.setViewName("Lblog");
+		
+		return mv;
 	}
 	
 	

@@ -55,22 +55,30 @@
 	<h5>TOKYO</h5>
 	<h4>My first trip in Tokyo. Is April a good time to visit Tokyo?</h4>
 	<p>Cherry blossoms are a top highlight of Tokyo in early April. Hugely popular events include Ueno Park's Ueno Sakura Matsuri and the Nakameguro Cherry Blossom Festival held along the Megurogawa River in Nakameguro. There's also Sumida Park Sakura Festival and Chiyoda Cherry Blossom Festival which takes place along the Chidorigafuchi walkway to the west of the Imperial Palace. Petals dance in the air as they fall like snow, and float on the surface of rivers, creating quintessential spring scenes.</p>
-	<h6>04/04/2016</h6>
-	<h6>22 COMMENTS</h6>
+	<div class="comment" style="color:#009100;">我喜欢这篇文章!</div>
+	<br>
 	<button type="button"><i class="material-icons">delete</i>Delete</button>
 	<button type="button"><i class="material-icons">refresh</i>Update</button>
+	<button type="button"><i class="material-icons">question_answer</i>Comment</button>
 	<hr>
 	<span th:each="blog : ${blogs}">
 		<h5><span th:text="${blog.introduction}"></span></h5>
 		<h4><span th:text="${blog.title}"></span></h4>
 		<p><span th:text="${blog.contents}"></span></p>
-		
+			<span th:each="comment : ${comments}">
+			<div class="comment" style="color:#009100;"><span th:text="${comment.comment}"></span>
+			</div>
+			</span>
+			<br>
 		<form action="/delete" method="get">
 		<input type="hidden" name="username" th:value="${username}">
 		<input type="hidden" name="blogId" th:value="${blog.blogId}">
 		<button type="input"><i class="material-icons">delete</i>Delete</button>
 		</form>
 		<button type="button"><i class="material-icons">refresh</i>Update</button>
+		<button type="button"><i class="material-icons">question_answer</i>
+		<a th:href="@{/comment(username=${username})}">Comment</a>
+		</button>
 		<br>
 		<hr>
 	</span>
@@ -78,5 +86,4 @@
 
 
 </body>	
-
 </html>
