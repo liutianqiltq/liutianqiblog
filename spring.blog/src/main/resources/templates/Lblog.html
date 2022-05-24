@@ -64,7 +64,12 @@
 		<h5><span th:text="${blog.introduction}"></span></h5>
 		<h4><span th:text="${blog.title}"></span></h4>
 		<p><span th:text="${blog.contents}"></span></p>
-		<button type="button"><i class="material-icons">delete</i>Delete</button>
+		
+		<form action="/delete" method="get">
+		<input type="hidden" name="username" th:value="${username}">
+		<input type="hidden" name="blogId" th:value="${blog.blogId}">
+		<button type="input"><i class="material-icons">delete</i>Delete</button>
+		</form>
 		<button type="button"><i class="material-icons">refresh</i>Update</button>
 		<br>
 		<hr>

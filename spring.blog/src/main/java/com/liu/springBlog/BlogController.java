@@ -66,7 +66,27 @@ public class BlogController {
 		mv.setViewName("Lblog");
 		
 		return mv;
+	}
+	
+	@GetMapping("/delete")
+	public ModelAndView delete(
+			@RequestParam("username") String username,//
+			@RequestParam("blogId") long blogId,//
+			ModelAndView mv
+			) {
+		
+		mv.addObject("username", username);
+		
+		BlogInfo blogInfo = blogInfoRepository.findById(blogId).get();
+		blogInfoRepository.delete(blogInfo);
+		
+		mv.addObject("blogs", blogInfoRepository.findAll());
+		mv.setViewName("Lblog");
+		
+		return mv;
 		
 	}
+	
+	
 	
 }
