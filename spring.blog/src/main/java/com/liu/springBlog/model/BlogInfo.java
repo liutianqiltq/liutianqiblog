@@ -26,5 +26,5 @@ public class BlogInfo {
 	private String title;
 	private String introduction;
 	private String contents;
-	
+
 }

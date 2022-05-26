@@ -75,7 +75,12 @@
 		<input type="hidden" name="blogId" th:value="${blog.blogId}">
 		<button type="input"><i class="material-icons">delete</i>Delete</button>
 		</form>
-		<button type="button"><i class="material-icons">refresh</i>Update</button>
+		<form action="/update" method="get">
+		<input type="hidden" name="username" th:value="${username}">
+		<input type="hidden" name="blogId" th:value="${blog.blogId}">		
+		<button type="submit">
+		<i class="material-icons">refresh</i>Update</button>
+		</form>
 		<button type="button"><i class="material-icons">question_answer</i>
 		<a th:href="@{/comment(username=${username})}">Comment</a>
 		</button>
@@ -83,7 +88,6 @@
 		<hr>
 	</span>
 </div>
-
 
 </body>	
 </html>

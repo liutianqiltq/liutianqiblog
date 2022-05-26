@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="editorstyle.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+	<form action="http://localhost:8080/update" method="post">
+		<input type="hidden" name="username" th:value="${username}">
+		<input type="hidden" name="blogId" th:value="${blogId}">
+  		<div class="form-group">
+    		<label for="exampleInputTitle">Title</label>
+    		<input type="title" class="form-control" placeholder="Title" name="title" th:value="${title}">
+  		</div>
+
+  		<div class="form-group">
+    		<label for="exampleInputIntroduction">Introduction</label>
+    		<input type="introduction" class="form-control" placeholder="Introduction" name="introduction" th:value="${introduction}">
+  		</div>
+
+  		<div>
+  			<label for="exampleInputContents">Contents</label>
+  			<textarea class="form-control" rows="3" placeholder="Let's talk about..." name="contents" th:text="${contents}"></textarea>
+  		</div>
+
+  		<div class="form-group2">
+    		<label for="exampleInputFile">File input</label>
+    		<input type="file" id="exampleInputFile">
+    		<p class="help-block">Example block-level help text here.</p>
+  		</div>
+
+  		<div class="radio">
+  			<label>
+   			 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Public
+  			</label>
+		</div>
+
+		<div class="radio">
+  			<label>
+    		<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Friends only
+  			</label>
+		</div>
+
+		<div class="radio">
+  			<label>
+   		 	<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Private
+  			</label>
+		</div>
+
+		<div class="check">
+			<select multiple class="form-control">
+				<option>EDITOR PROTOCOL</option>
+  				<option>1.Please visit the Blog User Agreement for more information.</option>
+ 				<option>2.By authorizing you accept the terms of the User Agreement/</option>
+  				<option>3.Blog account usage specification and user agreement.</option>
+  				<option>4.Use of this website constitutes acceptance of Blog's User Agreement and Privacy Policy.</option>
+  				<option>5.I have read the User Agreement and wish to watch the tutorial.</option>
+  				<option>6.Start trial means you agree and will follow Blog User agreement.</option>
+			</select>
+		</div>
+
+		<div class="checkbox">
+  			<label>
+    		<input type="checkbox" value="">I agree.
+  			</label>
+		</div>
+		<div class="checkboxdisabled">
+  			<label>
+   			<input type="checkbox" value="" disabled>I don't agree.
+  			</label>
+		</div>
+
+	<button type="submit" class="btn btn-primary btn-lg btn-block" value="update">submit</button>
+
+	</form>
+</body>
+</html>
