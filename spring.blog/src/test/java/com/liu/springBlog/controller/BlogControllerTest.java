@@ -202,9 +202,9 @@ public class BlogControllerTest {
 		BlogInfo blogInfo = BlogInfo.builder()//
 				.blogId(1l)//
 				.userId(1l)//
-				.title("title")//
-				.introduction("introduction")//
-				.contents("contents")//
+				.title(title)//
+				.introduction(introduction)//
+				.contents(contents)//
 				.build();
 		
 		RequestBuilder request = MockMvcRequestBuilders//
