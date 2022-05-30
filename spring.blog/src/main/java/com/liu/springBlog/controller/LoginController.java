@@ -1,4 +1,4 @@
-package com.liu.springBlog;
+package com.liu.springBlog.controller;
 
 import java.util.List;
 
